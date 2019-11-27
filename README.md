@@ -77,6 +77,34 @@ Output
 PONG
 ```
 
-Original link <https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04>_
+Original link <https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-redis-on-ubuntu-18-04>
+
+## Asynchronous Tasks in Django with Redis and Celery
+
+### Install Python Virtual Env and Dependencies
+
+Either add it in requirements.txt 
+```
+$ pip install Django Celery redis django-celery-beat
+```
+
+### Enable Cron task
+
+Back to `proj/proj/settings.py`, edit the `CELERY_BEAT_SCHEDULE`.
+
+```python3
+CELERY_BEAT_SCHEDULE = {
+    'backups': {
+        'task': 'app.tasks.backup',
+        'schedule': crontab(hour=2, minute=0)
+    },
+    'inbox_cron': {
+        'task': 'app.tasks.inbox_cron',
+        'schedule': timedelta(seconds=15),
+        'options': {'queue': APP_INBOX_QUEUE},
+    },
+}
+```
+
 
 
