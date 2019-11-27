@@ -84,6 +84,7 @@ Original link <https://www.digitalocean.com/community/tutorials/how-to-install-a
 ### Install Python Virtual Env and Dependencies
 
 Either add it in requirements.txt 
+
 ```
 $ pip install Django Celery redis django-celery-beat
 ```
@@ -105,6 +106,30 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 ```
+
+### Starting the Worker and the Beat
+
+Configurations are all in places, tasks are defined, and what’s left is to let it run. Celery requires both of the worker and the beat in order for tasks to execute as planned. 
+
+When `developing`, use this command:
+
+```
+celery -A project_name worker -l info -B
+```
+
+For `production` environment:
+
+```
+$ celery -A proj worker -l info
+$ celery -A proj beat -l info
+```
+
+Starting service manually is nice, but redundant. The solution is daemonization — making the services automatically starts along with the system.
+
+
+
+
+
 
 
 
