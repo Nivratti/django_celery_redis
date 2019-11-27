@@ -4,9 +4,12 @@ django_celery_redis
 
 Project to demonstrate celery and redis for distributed message queue
 
+
+# install redis
+
 Redis is an in-memory key-value store known for its flexibility, performance, and wide language support. This tutorial demonstrates how to install, configure, and secure Redis on an Ubuntu 18.04 server.
 
-## Step 1 — Installing and Configuring Redis
+### Step 1 — Installing and Configuring Redis
 
 In order to get the latest version of Redis, we will use apt to install it from the official Ubuntu repositories.
 Update your local apt package cache and install Redis by typing:
@@ -25,8 +28,6 @@ sudo nano /etc/redis/redis.conf
 ```
 
 Inside the file, find the supervised directive. This directive allows you to declare an init system to manage Redis as a service, providing you with more control over its operation. The supervised directive is set to no by default. Since you are running Ubuntu, which uses the systemd init system, change this to systemd:
-
-# /etc/redis/redis.conf
 
 ```
 . . .
@@ -49,7 +50,7 @@ That’s the only change you need to make to the Redis configuration file at thi
 sudo systemctl restart redis.service
 ```
 
-## Step 2 — Testing Redis
+### Step 2 — Testing Redis
 
 As with any newly-installed software, it’s a good idea to ensure that Redis is functioning as expected before making any further changes to its configuration. We will go over a handful of ways to check that Redis is working correctly in this step.
 
