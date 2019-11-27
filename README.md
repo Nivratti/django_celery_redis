@@ -126,10 +126,19 @@ $ celery -A proj beat -l info
 
 Starting service manually is nice, but redundant. The solution is daemonization — making the services automatically starts along with the system.
 
+### Requirements
 
+Your app `__init__.py` must contain
 
+```
+default_app_config = 'myApp.apps.myAppConfig'
+```
 
+Ex.
 
+```
+default_app_config = 'twitter.apps.TwitterConfig'
+```
 
 
 
